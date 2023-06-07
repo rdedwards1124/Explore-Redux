@@ -4,6 +4,8 @@ const plusBtn = document.getElementById('plus')
 const minusBtn = document.getElementById('minus')
 const plusFiveBtn = document.getElementById('plus-five')
 const minusFiveBtn = document.getElementById('minus-five')
+const incrementOdd = document.getElementById('increment-odd')
+const incrementAsync = document.getElementById('increment-async')
 
 // initial state value
 const initialState = {
@@ -69,11 +71,25 @@ const subFive = () => {
   store.dispatch(subFiveAction)
 }
 
+const incrementIfOdd = () => {
+  if(store.getState().value % 2 !== 0) {
+    store.dispatch(addAction)
+  }
+}
+
+const incrementOneSecond = () => {
+  setTimeout(() => {
+    store.dispatch(addAction)
+  }, 1000);
+}
+
 // event listeners
 plusBtn.addEventListener('click', addOne)
 minusBtn.addEventListener('click', subOne)
 plusFiveBtn.addEventListener('click', addFive)
 minusFiveBtn.addEventListener('click', subFive)
+incrementOdd.addEventListener('click', incrementIfOdd)
+incrementAsync.addEventListener('click', incrementOneSecond)
 
 // initial render
 render()
