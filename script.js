@@ -2,6 +2,8 @@
 const valueEl = document.getElementById('value')
 const plusBtn = document.getElementById('plus')
 const minusBtn = document.getElementById('minus')
+const plusFiveBtn = document.getElementById('plus-five')
+const minusFiveBtn = document.getElementById('minus-five')
 
 // initial state value
 const initialState = {
@@ -15,6 +17,10 @@ const counterReducer = (state = initialState, action) => {
             return { value: state.value + 1 }
         case 'counter/decremented':
             return { value: state.value - 1 }
+        case 'counter/incrementedFive':
+            return { value: state.value + 5 }
+        case 'counter/decrementedFive':
+            return { value: state.value - 5 }
         default:
         return state
     }
@@ -27,6 +33,14 @@ const addAction = {
 
 const subAction = {
   type: 'counter/decremented'
+}
+
+const addFiveAction = {
+  type: 'counter/incrementedFive'
+}
+
+const subFiveAction = {
+  type: 'counter/decrementedFive'
 }
 
 // generating the store
@@ -47,9 +61,19 @@ const subOne = () => {
   store.dispatch(subAction)
 }
 
+const addFive = () => {
+  store.dispatch(addFiveAction)
+}
+
+const subFive = () => {
+  store.dispatch(subFiveAction)
+}
+
 // event listeners
 plusBtn.addEventListener('click', addOne)
 minusBtn.addEventListener('click', subOne)
+plusFiveBtn.addEventListener('click', addFive)
+minusFiveBtn.addEventListener('click', subFive)
 
 // initial render
 render()
